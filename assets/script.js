@@ -56,11 +56,17 @@ function changeCursor() {
 
 function playPrevious() {
   getDot[selectedDot].classList.remove("dot_selected");
-  selectedDot --;
+
+  if(selectedDot > 0) {
+    selectedDot --;
+  } else {
+    selectedDot = slides.length - 1;
+  }
+
   getDot[selectedDot].classList.add("dot_selected");
   image.setAttribute("src", `./assets/images/slideshow/${slides[selectedDot].image}`);
   tagLine.innerHTML = slides[selectedDot].tagLine;
-  console.log(typeof leftArrow, leftArrow);
+  console.log(typeof selectedDot, selectedDot);
 }
 
 /**
@@ -68,12 +74,19 @@ function playPrevious() {
  */
 
 function playNext() {
+
   getDot[selectedDot].classList.remove("dot_selected");
-  selectedDot ++;
+
+  if(selectedDot < slides.length - 1) {
+    selectedDot ++;
+  } else {
+    selectedDot = 0;
+  }
+
   getDot[selectedDot].classList.add("dot_selected");
   image.setAttribute("src", `./assets/images/slideshow/${slides[selectedDot].image}`);
   tagLine.innerHTML = slides[selectedDot].tagLine;
-  console.log(typeof rightArrow, rightArrow);
+  console.log(typeof selectedDot, selectedDot);
 }
 
 /* ******************** CODE PRINCIPAL ******************** */
